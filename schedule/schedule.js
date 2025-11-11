@@ -1,7 +1,5 @@
-// Wait for the entire HTML page to load before running the script
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- 1. Get references to your HTML elements ---
     const daySelect = document.getElementById('day-select');
     const timeSelect = document.getElementById('time-select');
     const taskInput = document.getElementById('task-input');
@@ -13,9 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
         // Clear the list first to avoid duplicates
         taskList.innerHTML = ''; 
 
-        // Get the tasks from localStorage.
-        // JSON.parse() turns the string back into an array.
-        // If "tasks" doesn't exist, use an empty array [].
         const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
         // Loop through each task in the array
@@ -61,20 +56,17 @@ document.addEventListener('DOMContentLoaded', () => {
         // Add the new task object to the array
         tasks.push(newTask);
 
-        // Save the *updated* array back to localStorage.
-        // JSON.stringify() turns the array into a string for storage.
         localStorage.setItem('tasks', JSON.stringify(tasks));
 
         // --- 4. Refresh the displayed tasks ---
         displayTasks();
 
-        // Bonus: Clear the input fields after saving
+     
         taskInput.value = '';
         timeSelect.value = '';
     }
 
-    // --- 5. Add the Event Listener to the button ---
-    // When the button is clicked, run the saveTask function
+  
     addTaskBtn.addEventListener('click', saveTask);
 
     // --- 6. Display all saved tasks when the page first loads ---
